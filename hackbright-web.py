@@ -9,12 +9,17 @@ app = Flask(__name__)
 def get_student():
     """Show information about a student."""
 
+
     github = request.args.get('github', 'jhacks')
     first, last, github = hackbright.get_student_by_github(github)
+
+    projects_and_grades = hackbright.get_grades_by_github(github)
+
     html = render_template("student_info.html",
                             first=first,
                             last=last,
-                            github=github
+                            github=github,
+                            projects_and_grades=projects_and_grades
                             )
     return html
 
