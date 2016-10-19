@@ -51,7 +51,17 @@ def student_add():
                             )
     return html
 
+@app.route("/project")
+def get_project():
+    """Get project info"""
+    # Tuple with project name, description, and grade
+    project_info = hackbright.get_project_by_title(title)
 
+    html = render_template("project.html",
+                            project_info=project_info,
+                            title=title
+                            )
+    return html
 
 if __name__ == "__main__":
     hackbright.connect_to_db(app)
